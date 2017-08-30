@@ -15,7 +15,7 @@ object pepe {
 	
 	// Nos retorna el salario actual de Pepe
 	method salario(){
-		return (self.neto() - estadoSindical.descuentoSindical(self.neto()) - presentismo.adicionalPorPresentismo(self))	// modifica su estado salarial dependiendo de su Estado sindical y del presentismo
+		return (self.neto() - estadoSindical.descuentoSindical(self.neto()) + presentismo.adicionalPorPresentismo(self))	// modifica su estado salarial dependiendo de su Estado sindical y del presentismo
 	}
 	
 	// Retorna las ausencias de Pepe
