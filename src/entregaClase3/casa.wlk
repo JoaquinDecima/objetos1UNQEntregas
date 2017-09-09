@@ -3,9 +3,7 @@ import objetos.*
 
 object casaJulianPepe{
 	var cuentaQuePaga = cuentaCombinada
-	var sumaDeCompras = 0
-	var tieneComida = false
-	var vieneDeEquiparse = false
+	var cosasCompradas = []
 
 	method extraerDinero(gastoEnPesos){
 		cuentaQuePaga.extraer(gastoEnPesos)
@@ -16,7 +14,7 @@ object casaJulianPepe{
 	}
 
 	method esDerrochona(){
-		return(sumaDeCompras>5000)
+		return(cosasCompradas.sum({elem => elem.precio()})>5000)
 	}
 
 	method esBacan(){
@@ -24,21 +22,16 @@ object casaJulianPepe{
 	}
 
 	method comprar(cosa){
-		if (cosa.esComida()){
-			tieneComida = true
-		}
-		if (cosa.esElectrodomestico() || cosa.precio()>5000){
-			vieneDeEquiparse = true
-		}
 		cuentaQuePaga.extraer(cosa.precio())
+		cosasCompradas.add(cosa)
 	}
 
 	method tieneComida(){
-		return(tieneComida)
+		return(cosasCompradas.any({elem => elem.esComida()}))
 	}
 
 	method vieneDeEquiparse(){
-		return (vieneDeEquiparse)
+		return (cosasCompradas.any({elem => elem.esElectrodomestico()}))
 	}
 
 	method puedeComprar(cosa){
@@ -48,4 +41,17 @@ object casaJulianPepe{
 	method cuentaParaCompras(){
 		return(cuentaQuePaga)
 	}
+	
+	method compraMasCara(){
+		return (cosasCompradas.max({elem => elem.precio()}))
+	}
+	
+	method electrodomesticosComprados(){
+		return(cosasCompradas.filter({elem => elem.esElectrodomestico()}))
+	}
+	
+	method malaEpoca(){
+		return(cosasCompradas.all({elem => elem.esComida()}))
+	}
+		
 }
