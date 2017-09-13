@@ -21,6 +21,10 @@ object camion {
 	
 	// Permite saber el peso total del camion
 	method pesoTotal(){
+//CORRECCION: generalmente, al usar un método de una colección, se está resolviendo un problema  concreto.
+//CORRECCION: Conviene extraer eso a su propio método, de manera que este código sería:
+// return(tara + self.pesoCarga({)), y en pesoCarga hacés el sum 
+
 		return(tara + cosasCargadas.sum({elem => elem.peso()}))
 	}
 	
@@ -43,4 +47,14 @@ object camion {
 	method puedeCircularEnRuta(nivelMaximoDePeligrocidad){
 		return(self.objetosPeligrosos(nivelMaximoDePeligrocidad).isEmpty())
 	}
+//CORRECCION: una alternativa que deberías tener en cuenta, sobre todo para futuros casos, es:
+// - hacer un método que te diga si un elemento es peligroso (mayor a n)
+// - Que el mentodo objetos peligrosos uses ese método
+// - Que en puede circularEnRuta, en lugar de filtrar y preguntar por vacío, lo resuelvas con un all/any usando el método que te dice si un elemento es peligroso:
+//	method puedeCircularEnRuta(nivelMaximoDePeligrocidad){
+//		return not cosasCargadas.any({cosa => cosa.esMasPeligrosaQue(nivelMaximoDePeligrocidad))
+//	}
+
+
+
 }

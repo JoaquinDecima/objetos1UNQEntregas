@@ -27,6 +27,13 @@ object knightRider {
 object bumblebee {
 	var nivelDePeligrocidad = 15
 	const peso = 800
+
+//CORRECCION: Lo más prolijo es que bumblebee tenga modelado si está convertido en robot o no (por ejemplo con un boolean)
+//CORRECCION: y calcular su nivel de peligrosidad en base a esa información:
+//	method nivelDePeligrocidad(){
+//		return if (self.estaRobot)  30 else 15
+//	}
+
 	
 	// Transforma en Robot
 	method tranformarRobot(){
@@ -101,6 +108,8 @@ object arenaAGranel {
 object bateriaAntiaera {
 	var peso = 200
 	var nivelDePeligrocidad = 0
+
+//CORRECCION: Misma correccion que bumblebee, modelar si tiene misiles o no, y resolver las preguntas en base a esa info.
 	
 	// Tiene Misiles
 	method conMisiles(){
@@ -144,6 +153,7 @@ object contenedorPortuario {
 		if (contenido.isEmpty()){
 			return(peligrocidadDelContenedor)
 		}else{
+//CORRECCION: Ojo, esto está devolviendo el elemento mas peligroso, no su peligrosidad
 			return(contenido.max({elem => elem.nivelDePeligrocidad()}))
 		}
 	}
@@ -172,7 +182,7 @@ object residuosRadioactivos {
 	}
 }
 
-/* 	Knight Rider
+/* 	Knight Rider //CORRECICON embalaje!!
 *	Creado por Pato (Joaquin Decima)
 */
 object embalajeDeSeguridad {
