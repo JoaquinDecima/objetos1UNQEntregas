@@ -33,6 +33,7 @@ class Establecido inherits Viajero{
 	method vivio(anio){
 		return self.vivio().filter({viaje => viaje.fecha() == anio }).lugar()
 	}
+	
 }
 
 class Migrante inherits Viajero{}
