@@ -24,7 +24,19 @@ class Viajero {
 	
 	// Lista con lugares en X Fecha 
 	method lugaresEn(nFecha){
-		return self.viajesEn(nFecha).map({viaje => viaje.lugar()})
+		return self.viajesEn(nFecha).map({viaje => viaje.lugar()}).append(self.dondeVivio(nFecha))
+	}
+	
+	method coincidioCon(oViajero, nFecha){
+		return self.lugaresEn(nFecha).filter({lugar => oViajero.pasoPor(lugar)})
+	}
+	
+	method pasoPor(sLugar){
+		self.lugaresVisitados().contains(sLugar)
+	}
+	
+	method lugaresVisitados(){
+		return viajes.map({viaje => viaje.lugar()})
 	}
 	
 	method viajar(viaje){
